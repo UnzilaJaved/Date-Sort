@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+
+class sorting {
+public:
+    int day, month, year;
+    sorting(){
+}
+   
+    sorting(int day, int month, int year) {
+        this->day = day;
+        this->month = month;
+        this->year = year;
+    }
+    void display() {
+        cout << day << " " << month << " " << year << endl;
+    }
+
+   
+   
+};
+void SelectionSort(sorting dates[], int size) {
+        for (int i = 0; i < size - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < size; j++) {
+                if (dates[j].year < dates[minIndex].year ||
+                    (dates[j].year == dates[minIndex].year && dates[j].month < dates[minIndex].month) ||
+                    (dates[j].year == dates[minIndex].year && dates[j].month == dates[minIndex].month && dates[j].day < dates[minIndex].day)) {
+                    minIndex = j;
+                }
+            }
+            if (minIndex != i) {
+                swap(dates[i], dates[minIndex]);
+            }
+        }
+    }
+   
+   
+
+int main() {
+const int size=5;
+    sorting dates[size];
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter day for " << i << ": ";
+        cin >> dates[i].day;
+        cout << "Enter Month for " << i << ": ";
+        cin >> dates[i].month;
+        cout << "Enter Year for " << i << ": ";
+        cin >> dates[i].year;
+    }
+   
+    SelectionSort(dates, 5);
+   
+    cout << "Sorted dates:" << endl;
+    for (int i = 0; i < 5; i++) {
+        dates[i].display();
+    }
+   
+    return 0;
+}
